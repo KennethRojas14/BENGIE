@@ -156,3 +156,138 @@ Podrá:
 
 ---
 
+## 8. Tecnologías Recomendadas
+
+### 8.1. Backend & Base de Datos
+- **Supabase** (PostgreSQL + Auth + Real-time + Storage)
+  - Base de datos PostgreSQL con triggers y funciones
+  - Autenticación integrada con roles (empleados/administradores)
+  - Real-time subscriptions para comandas y inventario en tiempo real
+  - Row Level Security (RLS) para permisos granulares por sucursal
+  - Storage para imágenes de productos y documentos de facturación
+
+### 8.2. Frontend
+
+#### Panel Web (Administradores)
+- **Next.js 14** con TypeScript
+  - Server-side rendering para reportes optimizados
+  - App Router para mejor organización de rutas
+  - Optimización automática de performance e imágenes
+
+#### App Móvil (Empleados - Tablets/Móviles)
+- **React Native** con Expo
+  - Compatible con tablets Android
+  - Modo offline con AsyncStorage + sincronización automática
+  - Interfaz táctil optimizada para restaurantes
+
+### 8.3. Librerías y Herramientas
+
+#### Gestión de Estado y Datos
+```typescript
+- Zustand (gestión de estado simple y eficiente)
+- TanStack Query (cache, sincronización y queries)
+- React Hook Form + Zod (formularios y validación)
+```
+
+#### UI/UX y Diseño
+```typescript
+- Tailwind CSS + shadcn/ui (componentes modernos)
+- Framer Motion (animaciones suaves)
+- Lucide React (iconografía consistente)
+```
+
+#### Gráficos y Reportes
+```typescript
+- Chart.js o Recharts (dashboard y gráficos)
+- jsPDF (generación de PDFs para reportes)
+- React-table (tablas avanzadas con filtros)
+```
+
+#### Facturación Electrónica (Costa Rica)
+```typescript
+- Axios (comunicación con API de Hacienda)
+- xml2js (procesamiento de XML)
+- crypto-js (firmas digitales para comprobantes)
+```
+
+#### Métodos de Pago
+```typescript
+- Stripe (tarjetas internacionales)
+- SDK BAC San José / BCR (SINPE Móvil)
+- API de bancos locales para transferencias
+```
+
+#### Notificaciones y Comunicación
+```typescript
+- OneSignal o Firebase Cloud Messaging
+- React-hot-toast (notificaciones en interfaz)
+- WhatsApp Business API (envío de facturas)
+```
+
+### 8.4. Modo Offline (Crítico)
+
+#### React Native
+- **AsyncStorage** para almacenamiento local de datos
+- **NetInfo** para detección de conectividad
+- **Queue de sincronización** automática al reconectarse
+
+#### Web Application
+- **Service Workers** para cache inteligente
+- **IndexedDB con Dexie.js** para almacenamiento local
+- **Background sync** para sincronización en segundo plano
+
+### 8.5. Seguridad y Permisos
+```sql
+-- Row Level Security en Supabase
+CREATE POLICY "Empleados solo ven su sucursal" 
+ON orders FOR ALL TO authenticated 
+USING (restaurant_id = auth.jwt() ->> 'restaurant_id');
+
+CREATE POLICY "Admins ven todas las sucursales" 
+ON orders FOR ALL TO authenticated 
+USING (auth.jwt() ->> 'role' = 'admin');
+```
+
+### 8.6. Integraciones Externas
+| Servicio | Propósito | Tecnología |
+|----------|-----------|------------|
+| **Hacienda** | Facturación electrónica | API REST + OAuth2 |
+| **SINPE Móvil** | Pagos digitales | SDK bancario correspondiente |
+| **Delivery Apps** | Pedidos externos | Webhooks + API integrations |
+| **WhatsApp** | Envío de facturas | WhatsApp Business API |
+| **Bancos** | Conciliación automática | API bancaria + webhooks |
+
+### 8.7. Deployment y Hosting
+- **Frontend Web:** Vercel (optimizado para Next.js)
+- **App Móvil:** Expo EAS Build + App Stores
+- **Backend:** Supabase (completamente administrado)
+- **CDN:** Cloudflare para assets y optimización global
+- **Monitoreo:** Sentry para error tracking
+
+### 8.8. Arquitectura de Base de Datos
+```sql
+-- Tablas principales
+users, restaurants, categories, products, orders, 
+order_items, payments, inventory, suppliers, 
+cash_registers, invoices, customers
+
+-- Funciones automatizadas
+calculate_inventory_alerts()
+generate_daily_reports()
+sync_offline_orders()
+process_electronic_invoice()
+
+-- Real-time channels
+kitchen_orders, inventory_updates, sales_dashboard
+```
+
+### 8.9. Fases de Desarrollo
+1. **Fase 1:** Setup Supabase + Auth + Schema de BD
+2. **Fase 2:** Panel web básico (Next.js) + Dashboard
+3. **Fase 3:** Integración facturación electrónica
+4. **Fase 4:** Modo offline + sincronización automática
+5. **Fase 5:** Reportes avanzados + analytics
+6. **Fase 6:** Optimizaciones + testing completo
+
+---
+
