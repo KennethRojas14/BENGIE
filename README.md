@@ -156,13 +156,3 @@ Podrá:
 
 ---
 
-## 🔑 En resumen
-
-Para adaptar el sistema a **restaurantes**, debés tener en cuenta:
-
-- Reemplazar la lógica de combos fijos (pollos) por **platillos dinámicos, menús del día y comandas por mesa**.  
-- Agregar **gestión de tiempos y estados de pedidos.**  
-- Considerar **propinas, reservas, delivery** y **multicaja (bar + restaurante + cocina)**.  
-- Incluir **roles nuevos**: mesero, cocinero, administrador general.  
-- Fortalecer el **inventario por insumo (no por producto final)**.  
-- Añadir integración con **facturación electrónica**, **SINPE**, y **menús QR.**
