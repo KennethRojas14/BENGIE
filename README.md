@@ -265,29 +265,17 @@ USING (auth.jwt() ->> 'role' = 'admin');
 - **Monitoreo:** Sentry para error tracking
 
 ### 8.8. Arquitectura de Base de Datos
-```sql
--- Tablas principales
-users, restaurants, categories, products, orders, 
-order_items, payments, inventory, suppliers, 
-cash_registers, invoices, customers
 
--- Funciones automatizadas
-calculate_inventory_alerts()
-generate_daily_reports()
-sync_offline_orders()
-process_electronic_invoice()
-
--- Real-time channels
-kitchen_orders, inventory_updates, sales_dashboard
-```
+Por definir
 
 ### 8.9. Fases de Desarrollo
 1. **Fase 1:** Setup Supabase + Auth + Schema de BD
 2. **Fase 2:** Panel web básico (Next.js) + Dashboard
-3. **Fase 3:** Integración facturación electrónica
-4. **Fase 4:** Modo offline + sincronización automática
-5. **Fase 5:** Reportes avanzados + analytics
-6. **Fase 6:** Optimizaciones + testing completo
+3. **Fase 3:** App móvil core (React Native) + POS
+4. **Fase 4:** Integración facturación electrónica
+5. **Fase 5:** Modo offline + sincronización automática
+6. **Fase 6:** Reportes avanzados + analytics
+7. **Fase 7:** Optimizaciones + testing completo
 
 ---
 
